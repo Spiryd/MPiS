@@ -19,6 +19,7 @@ bmelted = b.melt('n', var_name='cols', value_name='vals')
 
 sns.scatterplot(data=bmelted, x='n', y = 'vals', s = 10)
 sns.scatterplot(data=b, y='avg', x='n', c = 'red')
-plt.axhline(math.pi, color = "RED")
+plt.axhline(math.pi, color = "green")
 
+plt.grid()
 plt.show()
