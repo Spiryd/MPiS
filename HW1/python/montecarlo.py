@@ -46,7 +46,7 @@ def firstIntegral():
                 for k in range(n):
                     x = random.uniform(a, b)
                     y = random.uniform(0, m)
-                    if np.cbrt(x) <= y:
+                    if np.cbrt(x) >=y:
                         counter += 1
                 result = (counter/n)*(b-a)*m
                 results[p] = result
@@ -77,7 +77,7 @@ def secondIntegral():
                 for k in range(n):
                     x = random.uniform(a, b)
                     y = random.uniform(0, m)
-                    if math.sin(x) <= y:
+                    if math.sin(x) >= y:
                         counter += 1
                 result = (counter/n)*(b-a)*m
                 results[p] = result
@@ -108,7 +108,7 @@ def thirdtIntegral():
                 for k in range(n):
                     x = random.uniform(a, b)
                     y = random.uniform(0, m)
-                    if 4*x*((1-x)**3) <= y:
+                    if 4*x*((1-x)**3) >= y:
                         counter += 1
                 result = (counter/n)*(b-a)*m
                 results[p] = result
