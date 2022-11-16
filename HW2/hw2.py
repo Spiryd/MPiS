@@ -4,10 +4,11 @@ import time
 
 s_time = time.time()
 
-df = pd.DataFrame(columns=["B", "U", "L", "C", "D", "D-C"])
+
 
 for n in range(1, 101):
     n = n * 1000
+    df = pd.DataFrame(columns=["B", "U", "L", "C", "D", "D-C"])
     for k in range(50):
         counter = 0
         all_no_zero = False
@@ -30,6 +31,7 @@ for n in range(1, 101):
                 row[4] = counter
                 row[5] = row[4] - row[3]
         df.loc[len(df)] = row
+    df.loc[len(df)] = df.agg(np.mean)
     df.to_csv(f"{n}.csv")
             
     e_time = time.time()    
