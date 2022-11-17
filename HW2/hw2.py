@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import time
+from numba import jit, cuda
 
 s_time = time.time()
 
@@ -39,7 +40,7 @@ def main():
                     row[5] = row[4] - row[3]
             df.loc[len(df)] = row
         df.loc[len(df)] = df.agg(np.mean)
-        df.to_csv(f"{n}.csv")
+        df.to_csv(f"{n/1000}.csv")
                 
         e_time = time.time()    
         print(e_time - s_time)
