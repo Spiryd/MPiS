@@ -40,7 +40,7 @@ def main():
         for row in table:
             df.loc[len(df)] = row
         df.loc[len(df)] = df.agg(np.mean)
-        df.to_csv(f"{n}.csv")
+        df.to_csv(f"data/{n}.csv")
         unit_e_time = time.time()    
         print(unit_e_time - unit_s_time)
     e_time = time.time()
