@@ -15,8 +15,12 @@ def main():
         processed.to_csv(f"processed_data/{col}.csv")
         
     for col in ["B", "U", "L", "C", "D"]:
-        df = pd.read_csv(f"processed_data/{col}.csv", index_col=0)
-        df.mean(axis=1).to_csv(f"processed_data/avg_{col}.csv")
+        to_be_processed  = pd.read_csv(f"processed_data/{col}.csv", index_col=0)
+        processed = pd.DataFrame()
+        to_be_processed = to_be_processed.mean(axis=1)
+        processed = processed.assign(value = to_be_processed)
+        processed['n'] = (processed.index + 1) * 1000
+        processed.to_csv(f"processed_data/avg_{col}.csv")
                 
 if __name__ == '__main__':
     main()
