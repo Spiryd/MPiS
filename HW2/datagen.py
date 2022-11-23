@@ -39,7 +39,6 @@ def main():
         df =  pd.DataFrame(columns=["B", "U", "L", "C", "D", "D-C"])
         for row in table:
             df.loc[len(df)] = row
-        df.loc[len(df)] = df.agg(np.mean)
         df.to_csv(f"data/{n}.csv")
         unit_e_time = time.time()    
         print(unit_e_time - unit_s_time)
