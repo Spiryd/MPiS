@@ -92,9 +92,9 @@ def gen_charts():
     plt.clf()
     # b
     to_be_charted = pd.read_csv("processed_data/avg_U.csv", index_col=0)
-    to_be_charted['b'] = to_be_charted['value']/to_be_charted['n']
-    sns.scatterplot(data=to_be_charted, x='n', y='b')
-    plt.savefig("charts/b.png")
+    to_be_charted['b1'] = to_be_charted['value']/to_be_charted['n']
+    sns.scatterplot(data=to_be_charted, x='n', y='b1')
+    plt.savefig("charts/b1.png")
     plt.clf()
     # c
     to_be_charted = pd.read_csv("processed_data/avg_L.csv", index_col=0)
