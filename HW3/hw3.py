@@ -1,5 +1,5 @@
 import numpy as np
-import scipy
+import scipy.stats
 from pick import pick
 import matplotlib.pyplot as plt
 import seaborn as sns 
@@ -35,19 +35,22 @@ def task1():
     print(pcg64_resaults)
     
 def task2():
-    n = [5, 10 , 15, 20, 30, 100]
-    cols = [x for x in range(1, 100001)]
+    N = [5, 10 , 15, 20, 30, 100]
     vals = np.array((-1, 1), dtype= np.int8)
     data = pd.DataFrame()
-    for i in n:
-        print(f"N = {i}")
+    for n in N:
+        print(f"N = {n}")
         row = []
-        for j in cols:
+        for j in range(10000):
             x = 0
-            for k in range(i):
+            for k in range(n):
                 x += np.random.choice(vals)
             row.append(x)
-        print(np.mean(x))
+        data[f'{n}'] = row
+    data.set_index(data.index + 1, inplace=True)
+    #sns.histplot(data['10'], cumulative=True)
+    #plt.show()
+
 
 
 def main():
