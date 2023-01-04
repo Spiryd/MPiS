@@ -44,32 +44,38 @@ def task2():
     data = pd.DataFrame()
     for n in N:
         print(f"N = {n}")
-        row = []
-        for i in range(100):
-            row.append(random_walk(n)[n-1])
-        data[f'{n}'] = row
+        column = []
+        for i in range(10000):
+            column.append(random_walk(n)[n-1])
+        data[f'{n}'] = column
     data.set_index(data.index + 1, inplace=True)
     print(data)
     #sns.histplot(data['10'], cumulative=True)
     #plt.show()
 
-def get_data(walk):
+@jit
+def up_time(walk):
     time = 0
-    count = 0
     prev = 0
     for s in walk:
         if s > 0 or prev > 0:
             time += 1
         prev = s
-    return (time, count)
+    return time
 
 def task3():
     N = [100, 1000, 10000]
+    data = pd.DataFrame()
     for n in N:
+        print(f"N = {n}")
+        column = []
         for k in range(5000):
-            time = get_data(random_walk(n))
-            print(time)
-
+            p = up_time(random_walk(n))/n
+            column.append(p)
+        data[f'{n}'] = column
+    data.set_index(data.index + 1, inplace=True)
+    print(data)
+           
     
 def main():
     title = "Choose option: "
