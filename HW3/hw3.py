@@ -1,10 +1,10 @@
 import numpy as np
-import scipy.stats
+from scipy import stats 
 from pick import pick
 import matplotlib.pyplot as plt
 import seaborn as sns 
 import pandas as pd
-from numba import jit, cuda
+from numba import jit
 
 @jit
 def lcg(x, a, c, m):
@@ -49,7 +49,7 @@ def task2():
     for n in N:
         print(f"N = {n}")
         column = []
-        for i in range(100000):
+        for i in range(1000000):
             column.append(random_walk(n)[n-1])
         data[f'{n}'] = column
     data.set_index(data.index + 1, inplace=True)
@@ -84,17 +84,31 @@ def acrsin_pdf(x):
 def gen_charts():
     task3_data = pd.read_csv("./data/task3.csv", index_col=0)
     sns.set_context("paper")
-    sns.histplot(data=task3_data, x="100", bins=20, stat="percent")
+    sns.histplot(data=task3_data, x="100", bins=20, stat="probability")
     plt.savefig("charts/100.png")
     plt.clf()
-    sns.histplot(data=task3_data, x="1000", bins=20, stat="percent")
+    sns.histplot(data=task3_data, x="1000", bins=20, stat="probability")
     plt.savefig("charts/1000.png")
     plt.clf()
-    sns.histplot(data=task3_data, x="10000", bins=20, stat="percent")
+    sns.histplot(data=task3_data, x="10000", bins=20, stat="probability")
     plt.savefig("charts/10000.png")
     plt.clf()
     task2_data = pd.read_csv("./data/task2.csv", index_col=0)
-    sns.histplot(data=task2_data, x="5", cumulative=True)
+    sns.histplot(data=task2_data, x="5", cumulative=True, bins=6, stat="probability")
+    plt.clf()
+    sns.histplot(data=task2_data, x="10", cumulative=True, bins=11, stat="probability")
+    plt.clf()
+    sns.displot(data=task2_data, x="15", cumulative=True, bins=16, stat="probability")
+    plt.clf()
+    sns.histplot(data=task2_data, x="20", cumulative=True, bins=21, stat="probability")
+    plt.clf()
+    sns.histplot(data=task2_data, x="25", cumulative=True, bins=20, stat="probability")
+    plt.clf()
+    ax = sns.histplot(data=task2_data, x="30", cumulative=True, bins=20, stat="probability")
+    x0, x1 = ax.get_xlim() 
+    x = np.linspace(x0, x1-1, 250)
+    y = stats.norm.cdf(x)
+    ax.plot(x, y, 'r')
     plt.show()
 
     
