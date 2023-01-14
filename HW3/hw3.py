@@ -23,12 +23,12 @@ def lcg_random_uniform_sample(n, interval, seed=0):
     return sample
 
 def task1():
-    lcg_resault = lcg_random_uniform_sample(1400000, [0, 1])
+    lcg_resault = lcg_random_uniform_sample(1000000, [0, 1])
     with open('data/lcg_data.txt', 'w') as f:
         for i in lcg_resault:
             f.write(str(i))
     pcg64 = np.random.Generator(np.random.PCG64())
-    pcg64_resaults = pcg64.integers(0, 2, 1400000)
+    pcg64_resaults = pcg64.integers(0, 2, 1000000)
     with open('data/pcg_data.txt', 'w') as f:
         for i in pcg64_resaults:
             f.write(str(i))
