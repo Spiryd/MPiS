@@ -3,7 +3,7 @@ from scipy import stats
 from pick import pick
 import matplotlib.pyplot as plt
 import seaborn as sns 
-import pandas as pd
+import pandas as pd 
 from numba import jit
 
 @jit
